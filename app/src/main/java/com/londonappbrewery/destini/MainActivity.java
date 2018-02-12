@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(savedInstanceState !=null){
+            mStory = savedInstanceState.getInt("storyKey");
+        }
 
         // TODO: Step 5 - Wire up the 3 views from the layout to the member variables:
             mStoryTextView = (TextView)findViewById(R.id.storyTextView);
@@ -53,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
                         mStoryIndex = 5;
                         Log.d("mes","checkansermethod run and show T3_story" + mStoryIndex);
                         mStoryTextView.setText(mStory);
+                        mButtonTop.setText(R.string.T3_Ans1);
+                        mButtonBottom.setText(R.string.T3_Ans2);
+
                     }else if( mStoryIndex == 5) {
                         mStoryIndex =5;
                         mStory = mStoryAnswerArray[mStoryIndex].getStoryID();
@@ -97,5 +103,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("storyKey",mStory);
+        //outState.putInt("storyKey",mStory);
     }
+}
 
